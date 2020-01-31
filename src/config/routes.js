@@ -8,5 +8,5 @@ module.exports = function(server) {
 
     // TRELL Routes
     const trellService = require('../api/trel/trelService');
-    trellService.register(router, '/todos');
+    trellService.register(router, '/trel');
 }
