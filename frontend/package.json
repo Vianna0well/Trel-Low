@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "axios": "^0.19.2",
-    "bootstrap": "^4.4.1",
+    "bootstrap": "^3.3.7",
     "css-loader": "^3.4.2",
     "file-loader": "^5.0.2",
     "font-awesome": "^4.7.0",
