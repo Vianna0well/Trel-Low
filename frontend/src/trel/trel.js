@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import PageHeader from '../template/pageHeader';
 import TrelForm from './trelForm';
 import TrelList from './trelList';
+import Axios from 'axios';
+
+const URL = 'http://localhost:3003/api/trel'
 
 export default class Trel extends Component {
 
@@ -11,6 +14,19 @@ export default class Trel extends Component {
 
         this.handleAdd = this.handleAdd.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
+        
+        this.refresh()
+    }
+
+    refresh() {
+        Axios.get(`${URL}?sort=-createdAt`)
+            .then(resp => this.setState({ ...this.state, description: '', list: resp.data }))
+    }
+
+    handleRemove(trel) {
+        Axios.delete(`${URL}/${trel._id}`)
+            .then(resp => this.refresh())
     }
 
     handleChange(e) {
@@ -18,7 +34,10 @@ export default class Trel extends Component {
     }
 
     handleAdd() {
-        console.log(this.state.description);
+        const description = this.state.description;
+
+        Axios.post(URL, { description })
+            .then(resp => this.refresh());
     }
 
     render() {
@@ -26,7 +45,7 @@ export default class Trel extends Component {
             <div>
                 <PageHeader name='Tarefas' small='Cadastro' />
                 <TrelForm handleAdd={this.handleAdd} handleChange={this.handleChange} />
-                <TrelList />
+                <TrelList handleRemove={this.handleRemove} list={this.state.list} />
             </div>
         )
     }
