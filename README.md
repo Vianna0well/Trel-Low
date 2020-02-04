@@ -9,7 +9,7 @@ Para iniciar o backend --> Primeiro na raiz da pasta execute os comandos:
 Também é importante iniciar o **mongod**
 
 # Como Iniciar o Frontend
-Para iniciar o Frontend --> Primeiro na pasta \frontend execute o comando: npm start
+Para iniciar o Frontend --> Primeiro na pasta \frontend execute o comando: **npm start**
 
 ## Autor
 
