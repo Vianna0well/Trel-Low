@@ -5,6 +5,8 @@
 # Trel-Low
 Uma aplicação de tarefas, ou melhor dizendo um Trello de Low custo
 
+A aplicação visa melhorar e organizar suas tarefas do dia a dia
+
 # Como Iniciar o Backend
 Para iniciar o backend --> Primeiro na raiz da pasta execute os comandos:
 
