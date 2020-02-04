@@ -6,3 +6,11 @@
     text-decoration: line-through;
     color: #777;
 }
+
+.tableActions {
+    width: 200px;
+}
+
+.trelForm {
+    padding-bottom: 80px;
+}

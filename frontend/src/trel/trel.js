@@ -17,28 +17,39 @@ export default class Trel extends Component {
         this.handleRemove = this.handleRemove.bind(this);
         this.handleMarkAsDone = this.handleMarkAsDone.bind(this);
         this.handleMarkAsPending = this.handleMarkAsPending.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+        this.handleClear = this.handleClear.bind(this);
         
-        this.refresh()
+        this.refresh();
     }
 
-    refresh() {
-        Axios.get(`${URL}?sort=-createdAt`)
-            .then(resp => this.setState({ ...this.state, description: '', list: resp.data }))
+    refresh(description = '') {
+        const search = description ? `&description__regex=/${description}/` : ''
+        Axios.get(`${URL}?sort=-createdAt${search}`)
+        .then(resp => this.setState({...this.state, description, list:resp.data}))
+    }
+    
+    handleSearch() {
+        this.refresh(this.state.description)
+    }
+      
+    handleClear() {
+        this.refresh();
     }
 
     handleMarkAsDone(trel) {
         Axios.put(`${URL}/${trel._id}`, { ...trel, done: true })
-            .then(resp => this.refresh())
+            .then(resp => this.refresh(this.state.description))
     }
 
     handleMarkAsPending(trel) {
         Axios.put(`${URL}/${trel._id}`, { ...trel, done: false })
-            .then(resp => this.refresh())
+            .then(resp => this.refresh(this.state.description))
     }
 
     handleRemove(trel) {
         Axios.delete(`${URL}/${trel._id}`)
-            .then(resp => this.refresh())
+            .then(resp => this.refresh(this.state.description))
     }
 
     handleChange(e) {
@@ -46,19 +57,29 @@ export default class Trel extends Component {
     }
 
     handleAdd() {
+        if(this.state.description === '') {
+            alert('Por favor insira sua tarefa!')
+            return
+        }
         const description = this.state.description;
 
         Axios.post(URL, { description })
-            .then(resp => this.refresh());
+            .then(resp => this.refresh(''));
     }
 
     render() {
         return (
             <div>
                 <PageHeader name='Tarefas' small='Cadastro' />
-                <TrelForm handleAdd={this.handleAdd} handleChange={this.handleChange} />
-                <TrelList handleRemove={this.handleRemove} list={this.state.list}
-                handleMarkAsDone={this.handleMarkAsDone} handleMarkAsPending={this.handleMarkAsPending} />
+                <TrelForm handleAdd={this.handleAdd} 
+                handleChange={this.handleChange} 
+                handleSearch={this.handleSearch} 
+                handleClear={this.handleClear} />
+                
+                <TrelList handleRemove={this.handleRemove}
+                list={this.state.list}
+                handleMarkAsDone={this.handleMarkAsDone} 
+                handleMarkAsPending={this.handleMarkAsPending} />
             </div>
         )
     }
