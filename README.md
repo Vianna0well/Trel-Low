@@ -1,12 +1,15 @@
 # Trel-Low
 Uma aplicação de tarefas, ou melhor dizendo um Trello de Low custo
 
-# Como Iniciar 
-Para iniciar o backend -> primeiro na raiz da pasta execute os comandos:
+# Como Iniciar o Backend
+Para iniciar o backend --> Primeiro na raiz da pasta execute os comandos:
 
 **npm run dev** (Nodemon) OU **npm run prod** (PM2)
 
 Também é importante iniciar o **mongod**
+
+# Como Iniciar o Frontend
+Para iniciar o Frontend --> Primeiro na pasta \frontend execute o comando: npm start
 
 ## Autor
 
