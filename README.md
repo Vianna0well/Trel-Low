@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/41162196/73796413-e074d200-478b-11ea-8d15-1c9a13f7c711.PNG" width="550" border="3">
+  <img src="https://user-images.githubusercontent.com/41162196/73796413-e074d200-478b-11ea-8d15-1c9a13f7c711.PNG" width="550" border="4">
 </p>
 
 # Trel-Low
