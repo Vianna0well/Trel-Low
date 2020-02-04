@@ -7,9 +7,11 @@ export default props => {
         const list = props.list || [];
         return list.map(trel => (
             <tr key={trel._id}>
-                <td>{trel.description}</td>
+                <td className={trel.done ? 'markedAsDone' : ''}>{trel.description}</td>
                 <td>
-                    <IconButton styleB='danger' icon='trash-o' onClick={() => props.handleRemove(trel)}></IconButton>
+                    <IconButton styleB='success' icon='check' onClick={() => props.handleMarkAsDone(trel)} hide={trel.done}></IconButton>
+                    <IconButton styleB='warning' icon='undo' onClick={() => props.handleMarkAsPending(trel)} hide={!trel.done}></IconButton>
+                    <IconButton styleB='danger' icon='trash-o' onClick={() => props.handleRemove(trel)}  hide={!trel.done}></IconButton>
                 </td>
             </tr>
         ))

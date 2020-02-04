@@ -15,6 +15,8 @@ export default class Trel extends Component {
         this.handleAdd = this.handleAdd.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
+        this.handleMarkAsDone = this.handleMarkAsDone.bind(this);
+        this.handleMarkAsPending = this.handleMarkAsPending.bind(this);
         
         this.refresh()
     }
@@ -22,6 +24,16 @@ export default class Trel extends Component {
     refresh() {
         Axios.get(`${URL}?sort=-createdAt`)
             .then(resp => this.setState({ ...this.state, description: '', list: resp.data }))
+    }
+
+    handleMarkAsDone(trel) {
+        Axios.put(`${URL}/${trel._id}`, { ...trel, done: true })
+            .then(resp => this.refresh())
+    }
+
+    handleMarkAsPending(trel) {
+        Axios.put(`${URL}/${trel._id}`, { ...trel, done: false })
+            .then(resp => this.refresh())
     }
 
     handleRemove(trel) {
@@ -45,7 +57,8 @@ export default class Trel extends Component {
             <div>
                 <PageHeader name='Tarefas' small='Cadastro' />
                 <TrelForm handleAdd={this.handleAdd} handleChange={this.handleChange} />
-                <TrelList handleRemove={this.handleRemove} list={this.state.list} />
+                <TrelList handleRemove={this.handleRemove} list={this.state.list}
+                handleMarkAsDone={this.handleMarkAsDone} handleMarkAsPending={this.handleMarkAsPending} />
             </div>
         )
     }
