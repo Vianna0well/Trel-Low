@@ -37,7 +37,9 @@
     "css-loader": "^3.4.2",
     "file-loader": "^5.0.2",
     "font-awesome": "^4.7.0",
+    "react-redux": "^7.1.3",
     "react-router": "^5.1.2",
-    "react-router-dom": "^5.1.2"
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5"
   }
 }

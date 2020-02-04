@@ -2,11 +2,21 @@ import React from 'react';
 import Grid from '../template/grid';
 import IconButton from '../template/iconButton';
 
-export default props => (
+export default props => {
+  
+    const keyHandler = e => {
+        if (e.key === 'Enter') {
+            e.shiftKey ? props.handleSearch() : props.handleAdd();
+        }else if(e.key === 'Escape'){
+            props.handleClear();
+        }
+    }
+
+    return(
     <form>
         <div className="trelForm">
             <Grid cols='12 9 10'>
-                <input id='description' className="form-control" placeholder="Adicione uma Tarefa" onChange={props.handleChange} />
+                <input id='description' className="form-control" placeholder="Adicione uma Tarefa" onKeyUp={keyHandler} onChange={props.handleChange} />
             </Grid>
 
             <Grid cols='12 3 2'>
@@ -16,4 +26,4 @@ export default props => (
             </Grid>
         </div>
     </form>
-)
+)}

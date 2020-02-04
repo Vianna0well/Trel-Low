@@ -57,10 +57,6 @@ export default class Trel extends Component {
     }
 
     handleAdd() {
-        if(this.state.description === '') {
-            alert('Por favor insira sua tarefa!')
-            return
-        }
         const description = this.state.description;
 
         Axios.post(URL, { description })
