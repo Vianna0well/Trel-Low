@@ -1,16 +1,8 @@
 import { combineReducers } from 'redux';
+import trelReducer from '../trel/trelReducer';
 
 const rootReducers = combineReducers({
-    trel: () => ({
-        description: 'Ler livro',
-        list: [{
-            description: 'Teste',
-            done: true
-        },{
-            description: 'Tarefa 2',
-            done: false
-        }]
-    })
+    trel: trelReducer
 })
 
 export default rootReducers

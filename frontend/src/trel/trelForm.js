@@ -1,8 +1,11 @@
 import React from 'react';
 import Grid from '../template/grid';
 import IconButton from '../template/iconButton';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { changeDescription } from './trelActions'
 
-export default props => {
+const TrelForm = props => {
   
     const keyHandler = e => {
         if (e.key === 'Enter') {
@@ -16,7 +19,7 @@ export default props => {
     <form>
         <div className="trelForm">
             <Grid cols='12 9 10'>
-                <input id='description' className="form-control" placeholder="Adicione uma Tarefa" onKeyUp={keyHandler} onChange={props.handleChange} />
+                <input id='description' className="form-control" placeholder="Adicione uma Tarefa" onKeyUp={keyHandler} onChange={props.changeDescription} value={props.description} />
             </Grid>
 
             <Grid cols='12 3 2'>
@@ -27,3 +30,7 @@ export default props => {
         </div>
     </form>
 )}
+
+const mapStateToProps = state => ({ description: state.trel.description });
+const mapDispatchToProps = dispatch => bindActionCreators({ changeDescription }, dispatch)
+export default connect(mapStateToProps, mapDispatchToProps)(TrelForm);

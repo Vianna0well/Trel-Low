@@ -73,7 +73,6 @@ export default class Trel extends Component {
                 handleClear={this.handleClear} />
                 
                 <TrelList handleRemove={this.handleRemove}
-                list={this.state.list}
                 handleMarkAsDone={this.handleMarkAsDone} 
                 handleMarkAsPending={this.handleMarkAsPending} />
             </div>
