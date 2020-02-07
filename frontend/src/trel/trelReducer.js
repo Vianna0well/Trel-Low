@@ -1,18 +1,13 @@
 const INITIAL_STATE = {
-    description: 'Input trancado',
-    list: [{
-        description: 'Teste',
-        done: true
-    },{
-        description: 'Tarefa 2',
-        done: false
-    }]
+    description: '', list: []
 }
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type){
         case 'DESCRIPTION_CHANGED':
             return { ...state, description: action.payload };
+        case 'TREL_SEARCHED':
+            return { ...state, list: action.payload.data }
         default:
             return state
     }

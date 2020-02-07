@@ -4,7 +4,6 @@ import TrelForm from './trelForm';
 import TrelList from './trelList';
 import Axios from 'axios';
 
-const URL = 'http://localhost:3003/api/trel'
 
 export default class Trel extends Component {
 
