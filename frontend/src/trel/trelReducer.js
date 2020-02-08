@@ -8,7 +8,7 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, description: action.payload };
         case 'TREL_SEARCHED':
             return { ...state, list: action.payload.data }
-        case 'TREL_ADDED':
+        case 'TREL_CLEAR':
             return { ...state, description: '' }
         default:
             return state

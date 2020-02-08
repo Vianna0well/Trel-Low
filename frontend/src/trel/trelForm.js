@@ -3,7 +3,7 @@ import Grid from '../template/grid';
 import IconButton from '../template/iconButton';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { add, changeDescription, search } from './trelActions'
+import { add, changeDescription, search, clear } from './trelActions'
 
 class TrelForm extends Component {
   
@@ -18,11 +18,11 @@ class TrelForm extends Component {
     }
 
     keyHandler(e) {
-        const { add, description, search } = this.props;
+        const { add, clear, description, search } = this.props;
         if (e.key === 'Enter') {
-            e.shiftKey ? search() : add(description);
+            e.ctrlKey ? search() : add(description);
         }else if(e.key === 'Escape'){
-            this.props.handleClear();
+            clear();
         }
     }
 
@@ -38,7 +38,7 @@ class TrelForm extends Component {
                     <Grid cols='12 3 2'>
                         <IconButton styleB='primary' icon='plus' onClick={() => add(description)}></IconButton>
                         <IconButton styleB='info' icon='search' onClick={() => search()}></IconButton>
-                        <IconButton styleB='default' icon='close' onClick={this.props.handleClear}></IconButton>
+                        <IconButton styleB='default' icon='close' onClick={this.props.clear}></IconButton>
                     </Grid>
                 </div>
             </form>
@@ -47,5 +47,5 @@ class TrelForm extends Component {
 }
 
 const mapStateToProps = state => ({ description: state.trel.description });
-const mapDispatchToProps = dispatch => bindActionCreators({ add, changeDescription, search }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ add, changeDescription, search, clear }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(TrelForm);
