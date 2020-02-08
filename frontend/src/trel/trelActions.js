@@ -13,3 +13,9 @@ export const search = () => {
         payload: request
     }
 }
+
+export const add = description => {
+    return Axios.post(URL, { description })
+        .then(resp => dispatchEvent({ type: 'TREL_ADDED', payload: resp.data }))
+        .then(resp => dispatchEvent(search()))
+}
