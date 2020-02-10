@@ -7,10 +7,11 @@ export const changeDescription = e => ({
 });
 
 export const search = () => {
-    const request = Axios.get(`${URL}?sort=-createdAt`);
-    return {
-        type: 'TREL_SEARCHED',
-        payload: request
+    return (dispatchEvent, getState) => {
+        const description = getState().trel.description;
+        const search = description ? `&description__regex=/${description}/` : '';
+        Axios.get(`${URL}?sort=-createdAt${search}`)
+            .then(resp => dispatchEvent({ type: 'TREL_SEARCHED', payload: resp.data }))
     }
 }
 
@@ -44,5 +45,5 @@ export const remove = trel => {
 }
 
 export const clear = () => {
-    return { type: 'TREL_CLEAR' }
+    return [{ type: 'TREL_CLEAR' }, search()]
 }

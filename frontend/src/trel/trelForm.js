@@ -37,7 +37,7 @@ class TrelForm extends Component {
         
                     <Grid cols='12 3 2'>
                         <IconButton styleB='primary' icon='plus' onClick={() => add(description)}></IconButton>
-                        <IconButton styleB='info' icon='search' onClick={() => search()}></IconButton>
+                        <IconButton styleB='info' icon='search' onClick={search}></IconButton>
                         <IconButton styleB='default' icon='close' onClick={this.props.clear}></IconButton>
                     </Grid>
                 </div>
